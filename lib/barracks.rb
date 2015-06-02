@@ -1,7 +1,10 @@
-class Barracks
-  attr_reader :gold, :food  
+class Barracks < Unit
+  attr_reader :gold, :food 
+
+
 
   def initialize
+    super(500, 0)
     @gold = 1000
     @food = 80
   end
@@ -34,7 +37,9 @@ class Barracks
     end
   end
 
-
+  def damage(ap)
+    self.health_points -= (ap/2).ceil
+  end
 
   
 
