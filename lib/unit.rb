@@ -14,6 +14,7 @@ class Unit
     elsif target.dead?
       nil
     else
+      
       target.damage(self.attack_power)
     end
 

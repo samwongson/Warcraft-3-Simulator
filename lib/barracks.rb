@@ -1,5 +1,5 @@
 class Barracks < Unit
-  attr_reader :gold, :food 
+  attr_reader :gold, :food, :lumber
 
 
 
@@ -7,6 +7,7 @@ class Barracks < Unit
     super(500, 0)
     @gold = 1000
     @food = 80
+    @lumber = 500
   end
 
   def can_train_footman?
@@ -15,6 +16,10 @@ class Barracks < Unit
 
   def can_train_peasant?
     gold >= 90 && food >= 5
+  end
+
+  def can_train_seige?
+    gold >= 200 && food >= 3 && lumber >= 60
   end
 
   def train_footman
@@ -37,8 +42,20 @@ class Barracks < Unit
     end
   end
 
+  def train_seige_engine
+    if can_train_seige? == false
+      nil
+    else
+      @gold -= 200
+      @food -= 3
+      @lumber -= 60
+      SeigeEngine.new
+    end
+  end
+
+
   def damage(ap)
-    self.health_points -= (ap/2).ceil
+     self.health_points -= (ap/2).ceil
   end
 
   

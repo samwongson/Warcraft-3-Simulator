@@ -2,6 +2,7 @@ require_relative 'spec_helper'
 
 describe Unit do 
 
+  
   describe "#Dead_units" do
       it "dead units can't attack" do
         @unit  = Unit.new(0, 20)
